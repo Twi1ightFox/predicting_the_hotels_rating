@@ -15,6 +15,25 @@
 Данный проект посвящен созданию модели, которая будет предсказывать рейтинг отеля на платформе Booking. Целью проекта является выявление нечестных отелей, которые накручивают свой рейтинг.
 Ссылка на соревнование на kaggle [SF-DST Booking reviews](https://www.kaggle.com/competitions/sf-booking/overview)
 
+Признаки
+* hotel_address - адрес отеля
+* review_date - дата, когда рецензент разместил соответствующий отзыв.
+* average_score - средний балл отеля, рассчитанный на основе последнего комментария за последний год
+* hotel_name - название отеля
+* reviewer_nationality - национальность рецензента
+* negative_review - отрицательный отзыв, который рецензент дал отелю.
+* review_total_negative_word_counts - общее количество слов в отрицательном отзыв
+* positive_review - положительный отзыв, который рецензент дал отелю
+* review_total_positive_word_counts - общее количество слов в положительном отзыве
+* reviewer_score - оценка, которую рецензент поставил отелю на основе своего опыта
+* total_number_of_reviews_reviewer_has_given - количество отзывов, которые рецензенты дали в прошлом
+* total_number_of_reviews - общее количество действительных отзывов об отеле
+* tags - теги, которые рецензент дал отелю.
+* days_since_review - продолжительность между датой проверки и датой очистки
+* additional_number_of_scoring - есть также некоторые гости, которые просто поставили оценку сервису, а не оставили отзыв. Это число указывает, сколько там действительных оценок без проверки.
+* lat - широта отеля
+* lng - долгота отеля
+
 :arrow_up:[к оглавлению](#оглавление)
 
 ### Этапы проекта
@@ -58,10 +77,11 @@
 
 ### ***Структура проекта***
 
-- [Project_3_Booking_reviews.ipynb](https://github.com/Dashaklen/Project_2_HH/blob/master/Project_2%20.ipynb): Jupyter ноутбук с анализом данных.
-- [reqirements.txt](https://github.com/Dashaklen/Project_2_HH/blob/master/requirements.txt): Зависимости
-- [README.md](https://github.com/Dashaklen/Project_2_HH/blob/master/README.md): Описание проекта.'
-- 
+- [Project_3_Booking_reviews.ipynb](https://github.com/Twi1ightFox/predicting_the_hotels_rating/blob/master/project-3-booking-reviews%20.ipynb): Jupyter ноутбук.
+- [reqirements.txt](https://github.com/Twi1ightFox/predicting_the_hotels_rating/blob/master/requirements.txt): Зависимости
+- [README.md](https://github.com/Dashaklen/Project_2_HH/blob/master/README.md): Описание проекта.
+- [Папка с графиками](https://github.com/Twi1ightFox/predicting_the_hotels_rating/tree/master/graphs): Графкик
+- [Дополнительные таблицы](https://github.com/Twi1ightFox/predicting_the_hotels_rating/tree/master/files): Дополнительные таблицы, которые использовались в проекте.
 
 :arrow_up:[к оглавлению](#оглавление)
 
@@ -85,17 +105,61 @@
 ### Заключительные Выводы:
 
 - В ходе работы были выделены следующие признаки, влияющие на оценку отеля и повышающие точность прогноза:
+   *  'review_total_positive_word_counts' - количество слов в позитивном отзыве
+   *  'review_total_negative_word_counts' - количетсво слов в негативном отзыве
+   *  'rank_score_by_post_code_for_each_city' - ранг почтового индекса по медианной оценке
+   *  'rank_cnt_lower_review_by_post_code' - ранг почтового индекса по количеству низких оценок отелей
+   *  'rank_cnt_upper_review_by_post_code' - ранг почтового индекса по количеству высоких оценок отелей
+   *   'rank_popularity_hotel' - ранг отеля по популярности
+   *   'median_score_by_pcode_people_room' - медианная оценка почтового индекса по количеству людей в поездке и типу комнат
+   *   'rank_cnt_tags' - ранг отеля по количеству уникальных тегов, которые ставили рецензенты
+   *   'cnt_positive_words' - количество в отзыве сильно-позитивных слов
+   *   'cnt_negative_words' - количество в отзыве сильно негативных слов
+   *   'polarity_positive' - полярность положительного отзыва
+   *   'polarity_negative' - полярность негативного отзыва
+   *   'cnt_negative' -  количество негативных отзывов
+   *   'rank_h_total_number_of_reviews_reviewer_has_given' ранг по городам в заивисмости от количества отзывов которые дали рецензенты в прошлом
+   *   'polarity_hotel' - общая полярность отеля
+   *   'sum_of_bad' - количетсво негативных признаков, для каждого отзыва
+   *   'reviewer_score_last_month' - медианная оценка за последний месяц
+   *   'is_good_location' - находится ли отель в хорошей локации
+   *   ('room_2 rooms', 'room_apartment', 'room_classic', 'room_comfort',  'room_deluxe', 'room_double room', 'room_king', 'room_other',
+       'room_quadruple room', 'room_queen', 'room_single', 'room_standard', 'room_studio', 'room_suit', 'room_superior', 'room_triple', 'room_twin') - типы комнат
+   *   ('category_cnt_people_1', 'category_cnt_people_2','category_cnt_people_3', 'category_cnt_people_4') - категории по количеству человек в поездке
+   *    'is_leisure_trip' -  является ли поездка просто туристической для отдыха
+   *    'location_good' - остался ли рецензент доволен локацией
+   *    'location_bad' - остался ли рецензент недоволен локацией
+   *    'personal_bad' - остался ли рецензент недоволен персоналом
+   *    'personal_good' - остался ли рецензент доволен персоналом
+   *    'bad_room' - остался ли рецензент недоволен номером
+   *    'bad_breakfast' - остался ли рецензент недоволен завтраком
+   *    'bad_sanitary' -остался ли рецензент недоволен уровнем санитарии
+   *    'bad_additional_serv' - остался ли рецензент недоволен работой техники
+   *    'other_bad' - были ли еще какие либо разочарования в поездке
+   *    'is_first_three_month' - является ли дата отзыва в первых трех месяцев года
+   *    ('reviewer_location_1', 'reviewer_location_2', 'reviewer_location_3') - локация рецензента
+   *    'category_review_-1' - является ли отзыв негативным
+   *    'category_review_0' - является ли отзыв нейтральным
+   *    ('hotel_city_Amsterdam', 'hotel_city_Barcelona', hotel_city_London', 'hotel_city_Milan', 'hotel_city_Paris', 'hotel_city_Vienna') -расположен ли отель в одном из указанных городов
 
 :arrow_up:[к оглавлению](#оглавление)
 
 ### Установка и использование
 
 1. Клонируйте репозиторий:
-   git clone [https://github.com/Twi1ightFox/Project_2_HH.git](https://github.com/Twi1ightFox/Project_2_HH)
+   git clone [https://github.com/Twi1ightFox/predicting_the_hotels_rating.git](https://github.com/Twi1ightFox/predicting_the_hotels_rating)
 2. Загрузите необходимые файлы csv:
    
+   (Дополнительные таблицы для проекта)[https://github.com/Twi1ightFox/predicting_the_hotels_rating/tree/master/files]
+      * city_centre.csv - долгота и широта центральных точек городов Европы
+      * name_of_countries.csv - таблица названий городов их стран и расположения(часть света)
+   
+   (Основные таблицы для проекта)[https://drive.google.com/file/d/12RjVigFmyLoLs0uaJFqN2ykA_MEVxBPI/view?usp=sharingъ]
+      * hotels_train.csv - набор данных для обучения
+      * hotels_test.csv - набор данных для оценки качества
+      * submission.csv - файл сабмишна в нужном формате
 
-4. Установить необходимые библиотеки:
+3. Установить необходимые библиотеки:
    pip install -r requirements.txt
    
 5. Запустить Jupyter notebook для просмотра и запуска анализа.
